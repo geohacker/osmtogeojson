@@ -1,4 +1,5 @@
 var _ = require("./lodash.custom.js");
+var _find = require("lodash.find")
 var rewind = require("geojson-rewind");
 
 // see https://wiki.openstreetmap.org/wiki/Overpass_turbo/Polygon_Features
@@ -392,8 +393,16 @@ osmtogeojson = function( data, options, featureCallback ) {
       var has_full_geometry = false;
       _.each( way.getElementsByTagName('nd'), function( nd, i ) {
         var id;
+        var wayId = way.getAttribute('id')
         if (id = nd.getAttribute('ref'))
           wnodes[i] = id;
+          thisNode = _find(nodes, ['id', id])
+          if (thisNode) {
+            if (!thisNode.hasOwnProperty('ways')) {
+              thisNode.ways = []
+            }
+            thisNode.ways.push(wayId)
+          }
         if (!has_full_geometry && nd.getAttribute('lat'))
           has_full_geometry = true;
       });
