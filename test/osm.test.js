@@ -133,7 +133,7 @@ describe("osm (xml)", function () {
 
     expectedResult = {
       "geojson": {
-        "type": "FeatureCollection",
+          "type": "FeatureCollection",
           "features": [
               {
                   "type": "Feature",
@@ -220,10 +220,9 @@ describe("osm (xml)", function () {
               "lat": "-1.0",
               "lon": "-1.0",
               "tags": {},
-              "ways": [
-                  "2",
-                  "2"
-              ]
+              "ways": {
+                  "2": 4
+              }
           },
           {
               "type": "node",
@@ -231,9 +230,9 @@ describe("osm (xml)", function () {
               "lat": "-1.0",
               "lon": "1.0",
               "tags": {},
-              "ways": [
-                  "2"
-              ]
+              "ways": {
+                  "2": 1
+              }
           },
           {
               "type": "node",
@@ -241,9 +240,9 @@ describe("osm (xml)", function () {
               "lat": "1.0",
               "lon": "1.0",
               "tags": {},
-              "ways": [
-                  "2"
-              ]
+              "ways": {
+                  "2": 2
+              }
           },
           {
               "type": "node",
@@ -251,9 +250,9 @@ describe("osm (xml)", function () {
               "lat": "1.0",
               "lon": "-1.0",
               "tags": {},
-              "ways": [
-                  "2"
-              ]
+              "ways": {
+                  "2": 3
+              }
           },
           {
               "type": "node",
@@ -261,10 +260,9 @@ describe("osm (xml)", function () {
               "lat": "-0.5",
               "lon": "0.0",
               "tags": {},
-              "ways": [
-                  "3",
-                  "3"
-              ]
+              "ways": {
+                  "3": 3
+              }
           },
           {
               "type": "node",
@@ -272,9 +270,9 @@ describe("osm (xml)", function () {
               "lat": "0.5",
               "lon": "0.0",
               "tags": {},
-              "ways": [
-                  "3"
-              ]
+              "ways": {
+                  "3": 1
+              }
           },
           {
               "type": "node",
@@ -282,12 +280,12 @@ describe("osm (xml)", function () {
               "lat": "0.0",
               "lon": "0.5",
               "tags": {},
-              "ways": [
-                  "3"
-              ]
+              "ways": {
+                  "3": 2
+              }
           }
       ]
-    };
+  };
     expect(osmtogeojson(xml, {flatProperties: false, mapRelations: true})).to.eql(expectedResult);
   });
 });

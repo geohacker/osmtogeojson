@@ -399,9 +399,9 @@ osmtogeojson = function( data, options, featureCallback ) {
           thisNode = _find(nodes, ['id', id])
           if (thisNode) {
             if (!thisNode.hasOwnProperty('ways')) {
-              thisNode.ways = []
+              thisNode.ways = {}
             }
-            thisNode.ways.push(wayId)
+            thisNode.ways[wayId] = i
           }
         if (!has_full_geometry && nd.getAttribute('lat'))
           has_full_geometry = true;
