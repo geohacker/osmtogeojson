@@ -1,7 +1,10 @@
 var _ = require("./lodash.custom.js");
 var _find = require("lodash.find")
-var rewind = require("geojson-rewind");
+// var rewind = require("geojson-rewind");
 
+function rewind (feature) {
+  return feature
+}
 // see https://wiki.openstreetmap.org/wiki/Overpass_turbo/Polygon_Features
 var polygonFeatures = {};
 require("osm-polygon-features").forEach(function(tags) {
