@@ -1,16 +1,11 @@
 var _ = require("./lodash.custom.js");
 var _find = require("lodash.find")
 var _isEqual = require("lodash.isequal")
-var mbRewind = require("geojson-rewind");
+//var rewind = require("geojson-rewind");
 
+// for Observe, we don't want to rewind the features
 function rewind (feature) {
-  const rewoundFeature = mbRewind(feature)
-  if (!_isEqual(rewoundFeature, feature)) {
-    rewoundFeature.properties.isRewound = true
-  } else {
-    rewoundFeature.properties.isRewound = false
-  }
-  return rewoundFeature
+  return feature
 }
 
 // see https://wiki.openstreetmap.org/wiki/Overpass_turbo/Polygon_Features
