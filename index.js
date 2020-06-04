@@ -1,6 +1,17 @@
 var _ = require("./lodash.custom.js");
 var _find = require("lodash.find")
-var rewind = require("geojson-rewind");
+var _isEqual = require("lodash.isequal")
+var mbRewind = require("geojson-rewind");
+
+function rewind (feature) {
+  const rewoundFeature = mbRewind(feature)
+  if (!_isEqual(rewoundFeature, feature)) {
+    rewoundFeature.properties.isRewound = true
+  } else {
+    rewoundFeature.properties.isRewound = false
+  }
+  return rewoundFeature
+}
 
 // see https://wiki.openstreetmap.org/wiki/Overpass_turbo/Polygon_Features
 var polygonFeatures = {};
