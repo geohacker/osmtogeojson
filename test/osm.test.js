@@ -133,138 +133,159 @@ describe("osm (xml)", function () {
 
     expectedResult = {
       "geojson": {
-        "type": "FeatureCollection",
-        "features": [
-          {
-            "type": "Feature",
-            "id": "way/2",
-            "properties": {
-              "type": "way",
-              "id": 2,
-              "tags": {
-                "area": "yes"
+          "type": "FeatureCollection",
+          "features": [
+              {
+                  "type": "Feature",
+                  "id": "way/2",
+                  "properties": {
+                      "type": "way",
+                      "id": 2,
+                      "tags": {
+                          "area": "yes"
+                      },
+                      "relations": [],
+                      "meta": {}
+                  },
+                  "geometry": {
+                      "type": "Polygon",
+                      "coordinates": [
+                          [
+                              [
+                                  -1,
+                                  -1
+                              ],
+                              [
+                                  1,
+                                  -1
+                              ],
+                              [
+                                  1,
+                                  1
+                              ],
+                              [
+                                  -1,
+                                  1
+                              ],
+                              [
+                                  -1,
+                                  -1
+                              ]
+                          ]
+                      ]
+                  }
               },
-              "relations": [],
-              "meta": {}
-            },
-            "geometry": {
-              "type": "Polygon",
-              "coordinates": [
-                [
-                  [
-                    -1,
-                    -1
-                  ],
-                  [
-                    1,
-                    -1
-                  ],
-                  [
-                    1,
-                    1
-                  ],
-                  [
-                    -1,
-                    1
-                  ],
-                  [
-                    -1,
-                    -1
-                  ]
-                ]
-              ]
-            }
-          },
-          {
-            "type": "Feature",
-            "id": "way/3",
-            "properties": {
-              "type": "way",
-              "id": 3,
-              "tags": {},
-              "relations": [],
-              "meta": {}
-            },
-            "geometry": {
-              "type": "LineString",
-              "coordinates": [
-                [
-                  0,
-                  -0.5
-                ],
-                [
-                  0,
-                  0.5
-                ],
-                [
-                  0.5,
-                  0
-                ],
-                [
-                  0,
-                  -0.5
-                ]
-              ]
-            }
-          }
-        ]
+              {
+                  "type": "Feature",
+                  "id": "way/3",
+                  "properties": {
+                      "type": "way",
+                      "id": 3,
+                      "tags": {},
+                      "relations": [],
+                      "meta": {}
+                  },
+                  "geometry": {
+                      "type": "LineString",
+                      "coordinates": [
+                          [
+                              0,
+                              -0.5
+                          ],
+                          [
+                              0,
+                              0.5
+                          ],
+                          [
+                              0.5,
+                              0
+                          ],
+                          [
+                              0,
+                              -0.5
+                          ]
+                      ]
+                  }
+              }
+          ]
       },
       "featuresInRelation": [
-        "way/2",
-        "way/3"
+          "way/2",
+          "way/3"
       ],
       "nodes": [
-        {
-          "type": "node",
-          "id": "4",
-          "lat": "-1.0",
-          "lon": "-1.0",
-          "tags": {}
-        },
-        {
-          "type": "node",
-          "id": "5",
-          "lat": "-1.0",
-          "lon": "1.0",
-          "tags": {}
-        },
-        {
-          "type": "node",
-          "id": "6",
-          "lat": "1.0",
-          "lon": "1.0",
-          "tags": {}
-        },
-        {
-          "type": "node",
-          "id": "7",
-          "lat": "1.0",
-          "lon": "-1.0",
-          "tags": {}
-        },
-        {
-          "type": "node",
-          "id": "8",
-          "lat": "-0.5",
-          "lon": "0.0",
-          "tags": {}
-        },
-        {
-          "type": "node",
-          "id": "9",
-          "lat": "0.5",
-          "lon": "0.0",
-          "tags": {}
-        },
-        {
-          "type": "node",
-          "id": "10",
-          "lat": "0.0",
-          "lon": "0.5",
-          "tags": {}
-        }
+          {
+              "type": "node",
+              "id": "4",
+              "lat": "-1.0",
+              "lon": "-1.0",
+              "tags": {},
+              "ways": {
+                  "2": 4
+              }
+          },
+          {
+              "type": "node",
+              "id": "5",
+              "lat": "-1.0",
+              "lon": "1.0",
+              "tags": {},
+              "ways": {
+                  "2": 1
+              }
+          },
+          {
+              "type": "node",
+              "id": "6",
+              "lat": "1.0",
+              "lon": "1.0",
+              "tags": {},
+              "ways": {
+                  "2": 2
+              }
+          },
+          {
+              "type": "node",
+              "id": "7",
+              "lat": "1.0",
+              "lon": "-1.0",
+              "tags": {},
+              "ways": {
+                  "2": 3
+              }
+          },
+          {
+              "type": "node",
+              "id": "8",
+              "lat": "-0.5",
+              "lon": "0.0",
+              "tags": {},
+              "ways": {
+                  "3": 3
+              }
+          },
+          {
+              "type": "node",
+              "id": "9",
+              "lat": "0.5",
+              "lon": "0.0",
+              "tags": {},
+              "ways": {
+                  "3": 1
+              }
+          },
+          {
+              "type": "node",
+              "id": "10",
+              "lat": "0.0",
+              "lon": "0.5",
+              "tags": {},
+              "ways": {
+                  "3": 2
+              }
+          }
       ]
-    };
+  };
     expect(osmtogeojson(xml, {flatProperties: false, mapRelations: true})).to.eql(expectedResult);
   });
 });

@@ -1,5 +1,12 @@
 var _ = require("./lodash.custom.js");
-var rewind = require("geojson-rewind");
+var _find = require("lodash.find")
+var _isEqual = require("lodash.isequal")
+//var rewind = require("geojson-rewind");
+
+// for Observe, we don't want to rewind the features
+function rewind (feature) {
+  return feature
+}
 
 // see https://wiki.openstreetmap.org/wiki/Overpass_turbo/Polygon_Features
 var polygonFeatures = {};
@@ -392,8 +399,16 @@ osmtogeojson = function( data, options, featureCallback ) {
       var has_full_geometry = false;
       _.each( way.getElementsByTagName('nd'), function( nd, i ) {
         var id;
+        var wayId = way.getAttribute('id')
         if (id = nd.getAttribute('ref'))
           wnodes[i] = id;
+          thisNode = _find(nodes, ['id', id])
+          if (thisNode) {
+            if (!thisNode.hasOwnProperty('ways')) {
+              thisNode.ways = {}
+            }
+            thisNode.ways[wayId] = i
+          }
         if (!has_full_geometry && nd.getAttribute('lat'))
           has_full_geometry = true;
       });
